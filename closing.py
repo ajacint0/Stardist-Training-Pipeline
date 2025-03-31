@@ -10,6 +10,7 @@ from pathlib import Path
 from glob import glob
 
 os.chdir('/mnt/home/ajacinto/ceph/stardist_data/2024-07-15_131317/nuclear_segmentations')
+ending = '_closed'
 for label_image in glob('*.tif'):
 	
 	file_path = label_image
@@ -31,5 +32,4 @@ for label_image in glob('*.tif'):
 		return_label_image[np.where(individual)] = nucleus
 	
 
-	save_tiff_imagej_compatible(f'/mnt/home/ajacinto/ceph/stardist_data/2024-07-15_131317/nuclear_segmentations_filled/{Path(file_path).stem}_closed.tif', return_label_image.astype('uint16'),axes='ZYX')
-
+	save_tiff_imagej_compatible(f'/mnt/home/ajacinto/ceph/stardist_data/2024-07-15_131317/nuclear_segmentations_filled/{Path(file_path).stem}{ending}.tif', return_label_image.astype('uint16'),axes='ZYX')
