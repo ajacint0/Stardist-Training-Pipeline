@@ -23,6 +23,8 @@ def createCircularMask(shape, center, radius):
 
 
 os.chdir('/mnt/ceph/users/hnunley/PoleCellProject_Celia/2023-07-12_164901/nuclear_segmentation/')
+destination = '/mnt/home/ajacinto/ceph/Niles/2023-07-12_164901/resized_nuclear_segmentations_haha/'
+new_header = 'resized'
 images = glob('*.tif')
 for f in images:
 
@@ -114,4 +116,4 @@ for f in images:
 				count = count + 1
 	print(f'changed {count} nuclei')
 	print()
-	tfl.imwrite(f'/mnt/home/ajacinto/ceph/Niles/2023-07-12_164901/resized_nuclear_segmentations/resized_{f}', img)
+	tfl.imwrite(f'{destination}{new_header}_{f}', img)
