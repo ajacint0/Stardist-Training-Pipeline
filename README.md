@@ -10,4 +10,6 @@ This assumes the movie that is going to be analyzed has already been put through
 4. Change the header for the files that will be written out
 5. This Code will transform any small spheres Hayden has put in place of missing nuclei into larger spheres that have the same size as the surrounding nuclei
 
+## Run closing algorithm to remove holes in middle of segmentations
+
 
