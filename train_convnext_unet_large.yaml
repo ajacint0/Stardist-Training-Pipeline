@@ -1,0 +1,124 @@
+# See <Config3D: class> at src.config.py for a description of the parameters
+
+name                           : 'Aggregate_caax_training_0528_2026'
+random_seed                    : 42
+
+log_dir                        : './experiments/logs'
+checkpoints_dir                : './experiments/checkpoints'
+result_dir                     : './experiments/results'
+
+# ========================= dataset ==================================
+# Using both BlastoSpim 1.0 and 2.0 currently
+train_image_paths              : '/mnt/ceph/users/ajacinto/nuclear_segmentation/Aggregate_caax/training/raw/*.npy'
+train_mask_paths               : '/mnt/ceph/users/ajacinto/nuclear_segmentation/Aggregate_caax/training/seg/*.npy'
+val_image_paths                : '/mnt/ceph/users/ajacinto/nuclear_segmentation/Aggregate_caax/validation/raw/*.npy'
+val_mask_paths                 : '/mnt/ceph/users/ajacinto/nuclear_segmentation/Aggregate_caax/validation/seg/*.npy'
+n_rays                         : 96
+foreground_prob                : 0.9
+n_classes                      : null # non None value (multiclass) not supported yet
+patch_size                     : [128, 128, 128]
+cache_sample_ind               : False
+cache_data                     : False
+
+batch_size                     : 4
+num_workers                    : 4
+
+preprocess                     : 'flip_rotate_noise_randintensity'
+preprocess_val                 : 'none'
+intensity_factor_range         : [0.6, 2.]
+intensity_bias_range           : [-0.2, 0.2]
+scale_limit                    : [1., 1.1]
+
+#======================================================================
+
+
+# ========================= Training ==================================
+
+use_gpu                        : True # Must be set to True
+use_amp                        : True
+isTrain                        : True
+evaluate                       : True
+
+load_epoch                     : null
+n_epochs                       : 500
+max_steps_per_epoch            : 1000000
+
+lambda_prob                    : 1.
+lambda_dist                    : 0.1
+lambda_reg                     : 0.0001
+lambda_prob_class              : 1.
+
+save_epoch_freq                : 5
+start_saving_best_after_epoch  : 0
+
+#======================================================================
+
+
+# ===================== Networks configurations =======================
+init_type                      : 'normal'
+init_gain                      : 0.02
+
+backbone                       : 'convnext_unet'
+n_dim                          : 3
+n_channel_in                   : 1
+grid                           : [4, 4, 4] # For downsampling anisotropic z-axis less than x and y, eg. [1, 4, 4] preserves z-axis and downsamples x and y by 4 
+anisotropy                     : [1, 1, 1]
+
+# UNET PARAMETERS
+
+#unet_kernel_size               : [3, 3, 3]
+#unet_pool                      : [2, 2, 2]
+#unet_n_filter_base             : 64 # Number of channels output from unet decoder
+#net_conv_after_unet            : 128 # Number of channels in hidden before final prediction heads
+
+
+# CONVNEXT UNET PARAMETERS
+
+convnext_spatial_dims          : 3
+convnext_encoder_depths        : [3, 3, 27, 3] # Number of conv layers in each encoder block
+convnext_encoder_channels      : [1, 128, 256, 512, 1024] # Output channels of each encoder block
+convnext_decoder_channels      : [1024, 512, 256, 128] # Output channels of each decoder block
+convnext_norm                  : 
+    - 'batch' 
+    - 'eps'                    : 0.003 
+      'momentum'               : 0.1
+convnext_act                   : 
+    - 'relu' 
+    - 'inplace'                : True
+convnext_dropout               : 0.0
+convnext_decoder_bias          : False
+convnext_upsample              : 'nontrainable'
+convnext_interp_mode           : 'nearest'
+convnext_pre_conv              : null
+convnext_align_corners         : null
+convnext_is_pad                : True
+net_conv_after_unet            : 128 # Number of channels in hidden before final prediction heads
+net_conv_after_unet_kernel_size: [3, 3, 3]
+
+#======================================================================
+
+
+# ========================= Optimizers ================================
+# Changed from Adam to AdamW
+lr                             : 0.001 #Alex changed from 0.001
+beta1                          :  0.9
+beta2                          :  0.999
+
+lr_policy                      : 'plateau'
+lr_plateau_factor              : 0.5
+lr_plateau_threshold           : 0.0000001
+lr_plateau_patience            : 40
+min_lr                         : 0.000001
+
+lr_linear_n_epochs             : 100
+lr_decay_iters                 : 100
+T_max                          : 2
+
+#lr_policy                      : 'cosine'
+#T_max                          : 100
+
+#lr_policy                      : 'cosine_restart'
+#T_0                            : 10
+#T_mult                         : 2
+#eta_min                        : 0.000001
+#last_epoch                     : -1
