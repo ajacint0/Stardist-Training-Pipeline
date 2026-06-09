@@ -8,29 +8,20 @@ This assumes the movie that is going to be analyzed has already been put through
 
 ## Create movie folders
 1. Go to the nuclear_segmentation directory, if it doesn't exist, create one
-2. In this directory, create folders with names corresponding to the pole cell movies you will be training the model on
-3. Open the file 'training_prep.py'
-   - set 'user' variable to the name of your account name in ceph i.e. /mnt/ceph/users/<span style="background-color: #FFFF00">ajacinto</span>/nuclear_segmentation/
-
-## If you have instance segmentation with small added spheres to simulate nuclei during divisions
-1. Open resize_nuclei.py
-2. Change the directory in the function os.chdir() to the desired location
-3. Change the directory in the variable "destination"
-4. Change the header for the files that will be written out in the variable "header"
-5. Run with command 'python resize_nuclei.py'
-6. This code will transform any small spheres Hayden has put in place of missing nuclei into larger spheres that have the same size as the surrounding nuclei
-
-## Run closing algorithm to remove holes in middle of segmentations
-1. Open closing.py
-2. Change the directory in the function os.chdir() to the desired location
-3. Change the ending for the files that will be written out in the variable "ending"
-4. Run with command 'python closing.py'
-5. This code fills in holes left inside the segmentations
-
-## Run algorithm that ensures all segmentations are star-convex
-1. Open to_spheres.py
-2. Change the directory in the function os.chdir() to the desired location
-3. Change the directory in the variable "output"
-4. Change the header for the files that will be written out in the variable "header"
-
+2. In this directory, create a folder with the name of your training data i.e. 'caax_training'
+3. Inside the training data directory, create folders with names corresponding to the pole cell movies you will be training the model on
+4. Inside the movie folders create folders 'raw' and 'seg' for each movie, these will contain the raw data and segmentations respectively
+5. Open the file 'training_prep.py'
+   - set 'user' variable to the name of your account name in ceph i.e. /mnt/ceph/users/```ajacinto```/nuclear_segmentation/caax_training/
+   - set 'folder' variable to name of the training set i.e. /mnt/ceph/users/ajacinto/nuclear_segmentation/```caax_training```/
+   - set strings in 'cropped_paths_names' list to the names of your movies that you added in step 2
+6. Run code by typing 'python training_prep.py' in terminal
+   - training_prep.py calls functions from training_prep_functions
+      1. renumber() combines all raw data and all segmentations into individual folders
+      2. closing() fills all holes left inside the segmentations
+      3. to_spheres() changes any non-convex-star shaped segmentation up until this point into spheres
+      4. tif_to_npy() changes all the images from .tif to .npy so Andrew's model can use it
+      5. split_train_val() separates the data into training and validation bins
+   - These functions also create folders which you can check the intermediate contents of
+     
 
