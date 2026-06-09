@@ -41,5 +41,6 @@ This assumes the movie that is going to be analyzed has already been put through
 4. Change 'config_file' variable path to the path for the .yaml file
 5. For the path in the model.net.load_state_dict() function, make sure it points to your checkpoints, probably only have to change name of the training, the same as in the .yaml file.
 6. In the tfl.imwrite() function, set the path to a folder you'd like the predictions to be placed in.
+7. Run all cells in the notebook
      
 
