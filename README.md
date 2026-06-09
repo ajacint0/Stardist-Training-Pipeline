@@ -23,5 +23,9 @@ This assumes the movie that is going to be analyzed has already been put through
       4. tif_to_npy() changes all the images from .tif to .npy so Andrew's model can use it
       5. split_train_val() separates the data into training and validation bins
    - These functions also create folders which you can check the intermediate contents of
+   - example structure for directory will be in '/mnt/home/ajacinto/ceph/nuclear_segmentation/test/'
+
+## Training
+1. Open 
      
 
