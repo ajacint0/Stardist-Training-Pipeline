@@ -26,6 +26,10 @@ This assumes the movie that is going to be analyzed has already been put through
    - example structure for directory will be in '/mnt/home/ajacinto/ceph/nuclear_segmentation/test/'
 
 ## Training
-1. Open 
+1. Open train_convnext_unet_large.yaml
+   - Change 'name' parameter to name of the training set with date i.e. 'caax_training_0721_2025'
+   - Make sure 'train_image_paths', 'train_mask_paths', 'val_image_paths', and 'val_mask_paths' paths are corect
+2. Open run_training.sh
+   - In the last line of the file, ensure the path leads to the .yaml file.
      
 
