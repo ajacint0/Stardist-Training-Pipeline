@@ -31,5 +31,15 @@ This assumes the movie that is going to be analyzed has already been put through
    - Make sure 'train_image_paths', 'train_mask_paths', 'val_image_paths', and 'val_mask_paths' paths are corect
 2. Open run_training.sh
    - In the last line of the file, ensure the path leads to the .yaml file.
+  
+## Evaluation
+1. In training set folder, create folder with name of movie you wish to evaluate on
+   - These images should be cropped 16/8bit tifs
+2. Go to the jupyter hub from the flatiron website
+   - Set job to gpu node (4 hours)
+3. Change 'source_dir' variable path to the one you chose for evaluation
+4. Change 'config_file' variable path to the path for the .yaml file
+5. For the path in the model.net.load_state_dict() function, make sure it points to your checkpoints, probably only have to change name of the training, the same as in the .yaml file.
+6. 
      
 
