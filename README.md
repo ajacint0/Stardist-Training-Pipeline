@@ -10,6 +10,7 @@ This assumes the movie that is going to be analyzed has already been put through
 1. Go to the nuclear_segmentation directory, if it doesn't exist, create one
 2. In this directory, create folders with names corresponding to the pole cell movies you will be training the model on
 3. Open the file 'training_prep.py'
+   - set 'user' variable to the name of your account name in ceph i.e. /mnt/ceph/users/</mark>ajacinto</mark>/nuclear_segmentation/
 
 ## If you have instance segmentation with small added spheres to simulate nuclei during divisions
 1. Open resize_nuclei.py
