@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: stardist-tools
+Version: 0.8.3
+Summary: Data processing tools for the model StarDist - Object Detection with Star-convex Shapes
+Home-page: https://github.com/stardist/stardist
+Author: Thierno Barry
+Author-email: thierno.barry.1@u-bordeaux.fr
+License: BSD-3-Clause
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.6
+License-File: LICENSE.txt
