@@ -32,7 +32,7 @@ This assumes the movie that is going to be analyzed has already been put through
 2. Open run_training.sh
    - In the last line of the file, ensure the path leads to the .yaml file.
   
-## Evaluation
+## Inference
 1. In training set folder, create folder with name of movie you wish to evaluate on
    - These images should be cropped 16/8bit tifs
 2. Go to the jupyter hub from the flatiron website
@@ -42,5 +42,12 @@ This assumes the movie that is going to be analyzed has already been put through
 5. For the path in the model.net.load_state_dict() function, make sure it points to your checkpoints, probably only have to change name of the training, the same as in the .yaml file.
 6. In the tfl.imwrite() function, set the path to a folder you'd like the predictions to be placed in.
 7. Run all cells in the notebook
-     
+
+## Example Dataset
+1. An example dataset can be found in '/mnt/ceph/users/ajacinto/nuclear_segmentation/test/'
+2. The dataset used to train the non-caax model is in '/mnt/ceph/users/ajacinto/nuclear_segmentation/Liu_aggregate/'
+   - The model is located in '/mnt/ceph/users/ajacinto/nuclear_segmentation/experiments/checkpoints/Liu_aggregate_training_0610_2025/best.pth'
+4. The dataset used to train the caax model is in '/mnt/ceph/users/ajacinto/nuclear_segmentation/Aggregate_caax/
+   - The model is located in '/mnt/ceph/users/ajacinto/nuclear_segmentation/experiments/checkpoints/Aggregate_caax_training_0528_2026/best.pth'
+
 
