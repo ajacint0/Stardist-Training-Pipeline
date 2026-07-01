@@ -17,11 +17,11 @@ This assumes the movie that is going to be analyzed has already been put through
    - set strings in 'cropped_paths_names' list to the names of your movies that you added in step 2
 6. Run code by typing 'python training_prep.py' in terminal
    - training_prep.py calls functions from training_prep_functions
-      1. renumber() combines all raw data and all segmentations into individual folders
-      2. closing() fills all holes left inside the segmentations
-      3. to_spheres() changes any non-convex-star shaped segmentation up until this point into spheres
-      4. tif_to_npy() changes all the images from .tif to .npy so Andrew's model can use it
-      5. split_train_val() separates the data into training and validation bins
+      1. renumber() combines all raw data and all segmentations into individual folders ('aggregated_raw_cropped/', 'aggregated_seg_cropped/')
+      2. closing() fills all holes left inside the segmentations ('aggregated_seg_cropped_closed/')
+      3. to_spheres() changes any non-convex-star shaped segmentation up until this point into spheres ('aggregated_seg_cropped_closed_rays/')
+      4. tif_to_npy() changes all the images from .tif to .npy so Andrew's model can use it ('aggregated_prepared_raw/', 'aggregated_prepared_seg/')
+      5. split_train_val() separates the data into training and validation bins ('training/', 'validation/')
    - These functions also create folders which you can check the intermediate contents of
    - example structure for directory will be in '/mnt/home/ajacinto/ceph/nuclear_segmentation/test/'
 
@@ -34,12 +34,13 @@ This assumes the movie that is going to be analyzed has already been put through
    - run the sbatch command in this file
   
 ## Inference
-1. In training set folder, create folder with name of movie you wish to evaluate on
+1. In training set folder, create folder 'test' with another folder of the name of the movie you wish to evaluate on
    - These images should be cropped 16/8bit tifs
+   - ex: nuclear_segmentation/Aggregate_caax/test/2023-04-02_0238342
 2. Go to the jupyter hub from the flatiron website
    - Set job to gpu node (4 hours)
 3. Change 'source_dir' variable path to the one you chose for evaluation
-4. Change 'config_file' variable path to the path for the .yaml file
+4. Change 'config_file' variable path to the path for the same.yaml file as you used for training
 5. For the path in the model.net.load_state_dict() function, make sure it points to your checkpoints, probably only have to change name of the training, the same as in the .yaml file.
 6. In the tfl.imwrite() function, set the path to a folder you'd like the predictions to be placed in.
 7. Run all cells in the notebook
