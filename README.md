@@ -4,7 +4,7 @@
 This assumes the movie that is going to be analyzed has already been put throught the registration and deconvolution pipeline
 
 ## Crop and change dtype of images to 16bit
-- The deconvolved images will most likely be too large to put in the training data, only crop the area with the pole cells
+- The deconvolved images will most likely be too large to put in the training data, only crop the area with the pole cells and set to 16bit using .astype('uint16')
 
 ## Create movie folders
 1. Go to the nuclear_segmentation directory, if it doesn't exist, create one
@@ -31,6 +31,7 @@ This assumes the movie that is going to be analyzed has already been put through
    - Make sure 'train_image_paths', 'train_mask_paths', 'val_image_paths', and 'val_mask_paths' paths are corect
 2. Open run_training.sh
    - In the last line of the file, ensure the path leads to the .yaml file.
+   - run the sbatch command in this file
   
 ## Inference
 1. In training set folder, create folder with name of movie you wish to evaluate on
