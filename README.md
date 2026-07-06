@@ -29,7 +29,8 @@ This assumes the movie that is going to be analyzed has already been put through
 1. Open train_convnext_unet_large.yaml
    - Change 'name' parameter to name of the training set with date i.e. 'caax_training_0721_2025'
    - Make sure 'train_image_paths', 'train_mask_paths', 'val_image_paths', and 'val_mask_paths' paths are corect
-2. Open run_training.sh
+2. Create virtual environment using requirements.txt in /notebooks/
+3. Open run_training.sh
    - In the last line of the file, ensure the path leads to the .yaml file.
    - run the sbatch command in this file
   
